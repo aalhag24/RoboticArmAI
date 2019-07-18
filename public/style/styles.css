@@ -1,0 +1,6 @@
+h1 { color: green; }
+#IMG { text-align:center; border:1px solid black; padding:5px }
+div#comp { border:1px solid black; padding:5px; }
+div#comp .row { display: block; text-align:center; padding: 5%; }
+div#comp .row .col-sm-6 {  display: inline; text-align: center; margin-left: 15px; margin-right: 15px; }
+#CBtn { padding: 20px; border-radius: 50%; }	

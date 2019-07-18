@@ -10,6 +10,8 @@ const wCap = new cv.VideoCapture(0);
 wCap.set(cv.CAP_PROP_FRAME_WIDTH, 300);
 wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 300);
 
+app.use(express.static(path.join(__dirname, '../public')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
