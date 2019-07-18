@@ -88,4 +88,4 @@ typings/
 .dynamodb/
 
 # Lock files
-./package-lock.json
+package-lock.json
