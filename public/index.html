@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8">
+		<title>My Robot experiment</title>
+
+		<!-- Socket.io -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+		<!-- Bootstrap CSS-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<!-- Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="./styles.css"/>
+	</head>
+
+	<body>
+		<style>
+			h1 { color: green; }
+			#IMG { text-align:center; border:1px solid black; padding:5px }
+			div#comp { border:1px solid black; padding:5px; }
+			div#comp .row { display: block; text-align:center; padding: 5%; }
+			div#comp .row .col-sm-6 {  display: inline; text-align: center; margin-left: 15px; margin-right: 15px; }
+			#CBtn { padding: 20px; border-radius: 50%; }	
+		</style>
+
+		<h1> Hello </h1> <br/>
+		<div class="containter">
+			<div class="row">
+				<div class="col-md" id="IMG">
+					<img id="image" src="">
+				</div>
+				<div class="col-md" id="comp">
+					<div class="row">
+						<button type="button" class="btn btn-outline-primary" onclick="ButtonClick(TBtn);">Top</button>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-outline-primary" onclick="ButtonClick(RBtn);">Right</button>
+						</div>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-outline-primary" id="CBtn" onclick="ButtonClick(CBtn);">Center</button>
+						</div>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-outline-primary" onclick="ButtonClick(LBtn);">Left</button>
+						</div>
+					</div>
+					<div class="row">
+						<button type="button" class="btn btn-outline-primary" onclick="ButtonClick(BBtn);">Bottom</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const socket = io.connect('http://192.168.1.228:3000');
+			socket.on('image', (image) => {
+				const imageElm = document.getElementById('image');
+				imageElm.src = `data:image/jpeg;base64,${image}`;
+			});
+		</script>
+
+		<script>
+			function ButtonClick(callback) {
+				callback();
+			}
+
+			function TBtn() { console.log("Top button was pressed"); }
+			function RBtn() { console.log("Right button was pressed"); }
+			function CBtn() { console.log("Center button was pressed"); }
+			function LBtn() { console.log("Left button was pressed"); }
+			function BBtn() { console.log("Bottom button was pressed"); }
+		</script>
+	</body>
+</html>
