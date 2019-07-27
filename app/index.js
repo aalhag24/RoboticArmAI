@@ -1,9 +1,11 @@
-const cv = require('opencv4nodejs');
-const path = require('path');
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
+const path = require('path');
+const fs = require('fs');
+const cv = require('opencv4nodejs');
 
 const FPS = 10;
 const wCap = new cv.VideoCapture(0);
@@ -16,10 +18,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+console.log('start here');
+
+
 setInterval(() => {
-	const frame = wCap.read();
-	const image = cv.imencode('.jpg', frame).toString('base64');
-	io.emit('image', image);
+  const frame = wCap.read();
+  //const gray = frame.bgrToGray()
+  const edge = frame.laplacian(16); // mess around with this variable
+
+  const image = cv.imencode('.jpg', frame).toString('base64');
+  const gImage = cv.imencode('.jpg', edge).toString('base64');
+
+  io.emit('image', image);
+  io.emit('gImage', gImage);
 }, 1000 / FPS);
 
 server.listen(3000);
