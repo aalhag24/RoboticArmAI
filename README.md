@@ -2,9 +2,11 @@
 ---
 ## General
 This project is my fourth attempt at building a robotics arm.
+
 ---
 ## Goal
 Get a robotics arm to recognize a Rubics Cube, manipulate, and solve it.
+
 ---
 ## Layout
 **Raspberry pi 3+** is the main computer and its responsibilities are:
@@ -21,5 +23,6 @@ Get a robotics arm to recognize a Rubics Cube, manipulate, and solve it.
 * Receive instructions from Mega and move the motor to specific position
 * Send the current position of the motor for the Mega
 * Query the sensor to see if the motor has hit a "wall" and report back any issues
+
 ---
 ![Image](https://github.com/aalhag24/RoboticArmAI/Img/Outline.png)
