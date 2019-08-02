@@ -1,5 +1,5 @@
 # Version 4 of my Robotics Arm project
----
+
 ## General
 This project is my fourth attempt at building a robotics arm.
 
